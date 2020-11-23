@@ -122,7 +122,7 @@ class App extends React.Component {
     return (
 
       <section className='app'>
-        <ImageGallery
+        <ImageGallery showThumbnails={false}
           items={this.images}
         />
 
