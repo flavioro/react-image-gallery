@@ -91,8 +91,8 @@ class App extends React.Component {
                 >
                 </a>
                 <iframe
-                  width='560'
-                  height='315'
+                  width='1200'
+                  height='800'
                   src={item.embedUrl}
                   frameBorder='0'
                   allowFullScreen
@@ -122,6 +122,16 @@ class App extends React.Component {
     return (
 
       <section className='app'>
+        {/* <>
+          <div className="container">
+            <div className="row">
+              <div className="col-6">
+                
+              </div>
+              <div className="col-6"></div>
+            </div>
+          </div>
+        </> */}
         <ImageGallery showThumbnails={false}
           items={this.images}
         />
