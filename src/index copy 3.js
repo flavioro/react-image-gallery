@@ -20,8 +20,7 @@ class App extends React.Component {
     this.images = [
       {
         thumbnail: `${PREFIX_URL}4v.jpg`,
-        // original: `${PREFIX_URL}4v.jpg`,
-        original: 'https://img.youtube.com/vi/4pSzhZ76GdM/mqdefault.jpg',
+        original: `${PREFIX_URL}4v.jpg`,
         embedUrl: 'https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&showinfo=0',
         description: 'Render custom slides within the gallery',
         renderItem: this._renderVideo.bind(this)
@@ -30,45 +29,45 @@ class App extends React.Component {
         original: `${PREFIX_URL}image_set_default.jpg`,
         // thumbnail: `${PREFIX_URL}image_set_thumb.jpg`,
         thumbnail: `${PREFIX_URL}image_set_default.jpg`,
-        // imageSet: [
-        //   {
-        //     srcSet: `${PREFIX_URL}image_set_cropped.jpg`,
-        //     media : '(max-width: 1280px)',
-        //   },
-        //   {
-        //     srcSet: `${PREFIX_URL}image_set_default.jpg`,
-        //     media : '(min-width: 1280px)',
-        //   }
-        // ]
+        imageSet: [
+          {
+            srcSet: `${PREFIX_URL}image_set_cropped.jpg`,
+            media : '(max-width: 1280px)',
+          },
+          {
+            srcSet: `${PREFIX_URL}image_set_default.jpg`,
+            media : '(min-width: 1280px)',
+          }
+        ]
       },
       {
         original: `${PREFIX_URL}1.jpg`,
         // thumbnail: `${PREFIX_URL}1t.jpg`,
         thumbnail: `${PREFIX_URL}1.jpg`,
-        // originalClass: 'featured-slide',
-        // thumbnailClass: 'featured-thumb',
+        originalClass: 'featured-slide',
+        thumbnailClass: 'featured-thumb',
         description: 'Custom class for slides & thumbnails'
       },
     // ].concat(this._getStaticImages());
     ];
   }
 
-  // _resetVideo() {
-  //   this.setState({showVideo: {}});
+  _resetVideo() {
+    this.setState({showVideo: {}});
 
-  //   if (this.state.showPlayButton) {
-  //     this.setState({showGalleryPlayButton: true});
-  //   }
+    if (this.state.showPlayButton) {
+      this.setState({showGalleryPlayButton: true});
+    }
 
-  //   if (this.state.showFullscreenButton) {
-  //     this.setState({showGalleryFullscreenButton: true});
-  //   }
-  // }
+    if (this.state.showFullscreenButton) {
+      this.setState({showGalleryFullscreenButton: true});
+    }
+  }
 
   _toggleShowVideo(url) {
     this.state.showVideo[url] = !Boolean(this.state.showVideo[url]);
     this.setState({
-      // showVideo: this.state.showVideo
+      showVideo: this.state.showVideo
     });
 
     if (this.state.showVideo[url]) {
@@ -103,9 +102,7 @@ class App extends React.Component {
                 </iframe>
             </div>
           :
-            <a 
-            onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
-            >
+            <a onClick={this._toggleShowVideo.bind(this, item.embedUrl)}>
               <div className='play-button'></div>
               <img className='image-gallery-image' src={item.original} />
               {

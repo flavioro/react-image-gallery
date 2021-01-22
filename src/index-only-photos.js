@@ -14,18 +14,17 @@ class App extends React.Component {
       showGalleryFullscreenButton: true,
       showPlayButton: true,
       showGalleryPlayButton: true,
-      showVideo: {},
+      // showVideo: {},
     };
 
     this.images = [
-      {
-        thumbnail: `${PREFIX_URL}4v.jpg`,
-        // original: `${PREFIX_URL}4v.jpg`,
-        original: 'https://img.youtube.com/vi/4pSzhZ76GdM/mqdefault.jpg',
-        embedUrl: 'https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&showinfo=0',
-        description: 'Render custom slides within the gallery',
-        renderItem: this._renderVideo.bind(this)
-      },
+      // {
+      //   thumbnail: `${PREFIX_URL}4v.jpg`,
+      //   original: `${PREFIX_URL}4v.jpg`,
+      //   embedUrl: 'https://www.youtube.com/embed/4pSzhZ76GdM?autoplay=1&showinfo=0',
+      //   description: 'Render custom slides within the gallery',
+      //   renderItem: this._renderVideo.bind(this)
+      // },
       {
         original: `${PREFIX_URL}image_set_default.jpg`,
         // thumbnail: `${PREFIX_URL}image_set_thumb.jpg`,
@@ -65,63 +64,63 @@ class App extends React.Component {
   //   }
   // }
 
-  _toggleShowVideo(url) {
-    this.state.showVideo[url] = !Boolean(this.state.showVideo[url]);
-    this.setState({
-      // showVideo: this.state.showVideo
-    });
+  // _toggleShowVideo(url) {
+  //   this.state.showVideo[url] = !Boolean(this.state.showVideo[url]);
+  //   this.setState({
+  //     showVideo: this.state.showVideo
+  //   });
 
-    if (this.state.showVideo[url]) {
-      if (this.state.showPlayButton) {
-        this.setState({showGalleryPlayButton: false});
-      }
+  //   if (this.state.showVideo[url]) {
+  //     if (this.state.showPlayButton) {
+  //       this.setState({showGalleryPlayButton: false});
+  //     }
 
-      if (this.state.showFullscreenButton) {
-        this.setState({showGalleryFullscreenButton: false});
-      }
-    }
-  }
+  //     if (this.state.showFullscreenButton) {
+  //       this.setState({showGalleryFullscreenButton: false});
+  //     }
+  //   }
+  // }
 
-  _renderVideo(item) {
-    return (
-      <div>
-        {
-          this.state.showVideo[item.embedUrl] ?
-            <div className='video-wrapper'>
-                <a
-                  className='close-video'
-                  onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
-                >
-                </a>
-                <iframe
-                  width='1200'
-                  height='800'
-                  src={item.embedUrl}
-                  frameBorder='0'
-                  allowFullScreen
-                >
-                </iframe>
-            </div>
-          :
-            <a 
-            onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
-            >
-              <div className='play-button'></div>
-              <img className='image-gallery-image' src={item.original} />
-              {
-                item.description &&
-                  <span
-                    className='image-gallery-description'
-                    style={{right: '0', left: 'initial'}}
-                  >
-                    {item.description}
-                  </span>
-              }
-            </a>
-        }
-      </div>
-    );
-  }
+  // _renderVideo(item) {
+  //   return (
+  //     <div>
+  //       {
+  //         this.state.showVideo[item.embedUrl] ?
+  //           <div className='video-wrapper'>
+  //               <a
+  //                 className='close-video'
+  //                 // onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
+  //               >
+  //               </a>
+  //               <iframe
+  //                 width='1200'
+  //                 height='800'
+  //                 src={item.embedUrl}
+  //                 frameBorder='0'
+  //                 allowFullScreen
+  //               >
+  //               </iframe>
+  //           </div>
+  //         :
+  //           <a 
+  //           // onClick={this._toggleShowVideo.bind(this, item.embedUrl)}
+  //           >
+  //             <div className='play-button'></div>
+  //             <img className='image-gallery-image' src={item.original} />
+  //             {
+  //               item.description &&
+  //                 <span
+  //                   className='image-gallery-description'
+  //                   style={{right: '0', left: 'initial'}}
+  //                 >
+  //                   {item.description}
+  //                 </span>
+  //             }
+  //           </a>
+  //       }
+  //     </div>
+  //   );
+  // }
 
   render() {
     return (
