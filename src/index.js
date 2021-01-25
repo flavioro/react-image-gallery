@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "react-image-gallery/styles/css/image-gallery.css";
+import './App.css';
 import ImageGallery from "react-image-gallery";
 
 const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/';
@@ -15,6 +16,7 @@ class App extends React.Component {
       showPlayButton: true,
       showGalleryPlayButton: true,
       showVideo: {},
+      additionalClass: true
     };
 
     this.images = [
@@ -51,6 +53,9 @@ class App extends React.Component {
       },
     // ].concat(this._getStaticImages());
     ];
+    // console.log('call getSetStyle')
+    this.getSetStyleByClassName('.image-gallery-image')
+    this.getSetStyleByClassName('.image-gallery-thumbnail-image')
   }
 
   // _resetVideo() {
@@ -78,6 +83,37 @@ class App extends React.Component {
 
       if (this.state.showFullscreenButton) {
         this.setState({showGalleryFullscreenButton: false});
+      }
+    }
+  }
+
+  getSetStyleByClassName(className_) {
+    if (process.browser) {
+      const styleSheets = window.document.styleSheets
+      const styleSheetsLength = styleSheets.length
+      for (let i = 0; i < styleSheetsLength; i++) {
+        const classes = styleSheets[i].rules || styleSheets[i].cssRules
+        if (!classes) continue
+        const classesLength = classes.length
+        for (let x = 0; x < classesLength; x++) {
+          // console.log(classes[x].selectorText === className_)
+          // console.log(className_)
+          // console.log(classes[x].selectorText)
+          if ((classes[x].selectorText) === className_) {
+            console.log(classes[x].selectorText)
+            let ret
+            console.log(this.state.additionalClass)
+            const rotateY = this.state.additionalClass
+              ? 'rotateY(180deg)'
+              : 'rotateY(0deg)'
+            if (classes[x].cssText.includes('transform')) {
+              classes[x].style.transform = rotateY
+              console.log(classes[x].style.transform)
+              ret = classes[x].cssText
+            }
+            return ret
+          }
+        }
       }
     }
   }
