@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
+import './App.css';
 
 const PREFIX_URL = 'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/';
 
@@ -59,21 +60,8 @@ class App extends React.Component {
     ].concat(this._getStaticImages());
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.slideInterval !== prevState.slideInterval ||
-        this.state.slideDuration !== prevState.slideDuration) {
-      // refresh setInterval
-      this._imageGallery.pause();
-      this._imageGallery.play();
-    }
-  }
-
   _onImageClick(event) {
-    console.debug('clicked on image', event.target, 'at index', this._imageGallery.getCurrentIndex());
-  }
-
-  _onImageLoad(event) {
-    console.debug('loaded image', event.target.src);
+    console.log('clicked on image', event.target, 'at index', this._imageGallery.getCurrentIndex());
   }
 
   _onSlide(index) {
@@ -81,16 +69,8 @@ class App extends React.Component {
     console.debug('slid to index', index);
   }
 
-  _onPause(index) {
-    console.debug('paused on index', index);
-  }
-
   _onScreenChange(fullScreenElement) {
     console.debug('isFullScreen?', !!fullScreenElement);
-  }
-
-  _onPlay(index) {
-    console.debug('playing from index', index);
   }
 
   _handleInputChange(state, event) {
@@ -107,7 +87,7 @@ class App extends React.Component {
 
   _getStaticImages() {
     let images = [];
-    for (let i = 2; i < 12; i++) {
+    for (let i = 2; i < 5; i++) {
       images.push({
         original: `${PREFIX_URL}${i}.jpg`,
         thumbnail:`${PREFIX_URL}${i}t.jpg`
@@ -193,7 +173,8 @@ class App extends React.Component {
           ref={i => this._imageGallery = i}
           items={this.images}
           lazyLoad={false}
-          onClick={this._onImageClick.bind(this)}
+          // onClick={this._onImageClick.bind(this)}
+          onClick={()=>  this._imageGallery.fullScreen()}
           onImageLoad={this._onImageLoad}
           onSlide={this._onSlide.bind(this)}
           onPause={this._onPause.bind(this)}
